@@ -1,0 +1,157 @@
+﻿@model ListSneakercs
+@using System.Globalization
+@{
+    ViewBag.Title = Model.TradeMark.TradeMarkName;
+    string FormatCurrency(double number)
+    {
+        CultureInfo cul = CultureInfo.GetCultureInfo("vi-VN");
+        return number.ToString("#,###", cul.NumberFormat);
+    }
+    var pageIndex = 1;
+    int[] pagesizeItem = new int[] { 10, 20, 30, 40, 50 };
+}
+
+
+<form asp-controller="Sneaker" asp-action="Index" asp-route-traId="@Model.TradeMark.TradeMarkId">
+    <div class="input-group rounded">
+        <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search"
+               aria-describedby="search-addon" name="keyword" />
+        <div class="form-group">
+            <button type="submit" class="btn btn-info"><i class="lnr lnr-magnifier"></i></button>
+        </div>
+    </div>
+</form>
+<div class="row">
+    <div class="w-100 mb-2">
+        <div class="float-left">
+            <input type="hidden" id="traId" value="@Model.TradeMark.TradeMarkId" />
+            <select id="pageSize" class="custom-select" onchange="changePageSize()">
+                @foreach (int item in pagesizeItem)
+                {
+                    if (item == Model.Pagination.PageSize)
+                    {
+                        <option value="@item" selected>@item</option>
+                    }
+                    else
+                    {
+                        <option value="@item">@item</option>
+                    }
+                }
+            </select>
+        </div>
+        <div class="float-right">
+            <a class="btn btn-success" asp-controller="Sneaker" asp-action="Create">
+                <i class="fas fa-plus">
+                </i>
+                Create
+            </a>
+            <a class="btn btn-secondary" asp-controller="TradeMark" asp-action="Index">
+                <i class="fas fa-backward">
+                </i>
+                Back
+            </a>
+        </div>
+    </div>
+
+    <table class="table table-bordered table-hover table-striped table-responsive-sm">
+        <thead class="thead-dark">
+            <tr>
+                <th style="width: 5%">
+                    #
+                </th>
+                <th style="width: 10%" class="text-center">
+                    Sneaker Name
+                </th>
+                <th style="width: 10%" class="text-center">
+                    Size
+                </th>
+                <th style="width: 10%" class="text-center">
+                    Photo
+                </th>
+                <th style="width: 5%" class="text-center">
+                    Price (vnd)
+                </th>
+                <th style="width: 5%" class="text-center">
+                    Quantity
+                </th>
+                <th style="width: 5%" class="text-center">
+                    Status
+                </th>
+                <th style="width: 20%">
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Sneaker sneaker in Model.TradeMark.Sneakers)
+            {
+                <tr>
+                    <td>@sneaker.SneakerId</td>
+                    <td>@sneaker.SneakerName</td>
+                    <td class="text-center">@sneaker.Size</td>
+                    <td class="text-center">
+                        <img class="img-fluid img-thumbnail img-lg" src=@Url.Content(sneaker.Photo) alt="@sneaker.SneakerName" />
+                    </td>
+                    <td class="text-right">
+                        @FormatCurrency((double)sneaker.Price)
+                    </td>
+                    <td class="text-center">
+                        @sneaker.Quantity
+                    </td>
+                    <td class="project-state text-center">
+                        @if (sneaker.IsDeleted)
+                        {
+                            <span class="badge badge-danger">Removed</span>
+                        }
+                        else
+                        {
+                            <span class="badge badge-success">Active</span>
+                        }
+                    </td>
+                    <td class="project-actions text-right">
+                        @if (!sneaker.IsDeleted)
+                        {
+                            <a class="btn btn-warning btn-sm" asp-controller="Sneaker" asp-action="View" asp-route-sneakerId="@sneaker.SneakerId">
+                                <i class="fas fa-folder">
+                                </i>
+                                View
+                            </a>
+                            <a class="btn btn-info btn-sm" asp-controller="Sneaker" asp-action="Modify" asp-route-sneakerId="@sneaker.SneakerId">
+                                <i class="lnr lnr-pencil">
+                                </i>
+                                Edit
+                            </a>
+                        }
+                        else
+                        {
+                            <a class="btn btn-warning btn-sm" asp-controller="Sneaker" asp-action="Restore" asp-route-sneakerId="@sneaker.SneakerId">
+                                <i class="fas fa-trash-restore">
+                                </i>
+                                Restore
+                            </a>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<div class="row">
+    <ul class="pagination">
+        <li class="@(Model.Pagination.CurrentPage == 1 ? "page-item disabled" : "page-item")"><a class="page-link" asp-controller="Sneaker" asp-action="index" asp-route-pageNumber="1">First</a></li>
+        <li class="@(Model.Pagination.CurrentPage == 1 ? "page-item disabled" : "page-item")"><a class="page-link" asp-controller="Sneaker" asp-action="index" asp-route-pageNumber="@(Model.Pagination.CurrentPage-1)">Previous</a></li>
+        @for (pageIndex = Model.Pagination.StartPage; pageIndex <= Model.Pagination.EndPage; pageIndex++)
+        {
+            <li class="@(pageIndex == Model.Pagination.CurrentPage ? "page-item active" : "page-item")"><a class="page-link" asp-controller="Sneaker" asp-action="index" asp-route-pageNumber="@pageIndex">@pageIndex</a></li>
+        }
+        <li class="@(Model.Pagination.CurrentPage == Model.Pagination.TotalPages ? "page-item disabled" : "page-item")"><a class="page-link" asp-controller="Sneaker" asp-action="index" asp-route-pageNumber="@(Model.Pagination.CurrentPage+1)">Next</a></li>
+        <li class="@(Model.Pagination.CurrentPage == Model.Pagination.TotalPages ? "page-item disabled" : "page-item")"><a class="page-link" asp-controller="Sneaker" asp-action="index" asp-route-pageNumber="@Model.Pagination.TotalPages">Last</a></li>
+    </ul>
+</div>
+
+@section scripts{
+    <script asp-append-version="true">
+        function changePageSize() {
+            window.location.href = `/Sneaker/Index/${$('#traId').val()}/1/${$('#pageSize').val()}`;
+        }
+    </script>
+}

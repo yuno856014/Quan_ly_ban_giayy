@@ -1,0 +1,149 @@
+﻿@model TradeMarkViews
+@{
+    ViewBag.Title = "TradeMark";
+    var pageNumber = 1;
+    int[] pagesizeItem = new int[] { 10, 20, 30, 40, 50 };
+}
+
+
+<div class="row">
+    <div class="w-100 mb-2">
+
+        <form asp-controller="TradeMark" asp-action="Index" >
+            <div class="input-group rounded">
+                <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search"
+                       aria-describedby="search-addon" name="keyword" />
+                <div class="form-group">
+                    <button type="submit" class="btn btn-info"><i class="lnr lnr-magnifier"></i></button>
+                </div>
+            </div>
+        </form>
+        <div class="float-left">
+            <select id="pageSize" class="custom-select" onchange="changePageSize()">
+                @foreach (int item in pagesizeItem)
+                {
+                    if (item == Model.Pagination.PageSize)
+                    {
+                        <option value="@item" selected>@item</option>
+                    }
+                    else
+                    {
+                        <option value="@item">@item</option>
+                    }
+                }
+            </select>
+        </div>
+        <div class="float-right">
+            <a class="btn btn-success" asp-controller="TradeMark" asp-action="Create">
+                <i class="fas fa-plus">
+                </i>
+                Create
+            </a>
+        </div>
+    </div>
+        <table class="table table-bordered table-hover table-striped table-responsive-sm">
+            <thead class="thead-dark">
+                <tr>
+                    <th style="width: 5%">
+                        #
+                    </th>
+                    <th style="width: 35%">
+                        TradeMark Name
+                    </th>
+                    <th style="width: 10%" class="text-center">
+                        Sneaker
+                    </th>
+                    <th style="width: 10%" class="text-center">
+                        Total quantity
+                    </th>
+                    <th style="width: 10%" class="text-center">
+                        Status
+                    </th>
+                    <th style="width: 30%">
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (TradeMark tra in Model.TradeMarks)
+                {
+                    <tr>
+                        <td>@tra.TradeMarkId</td>
+                        <td>@tra.TradeMarkName</td>
+                        <td class="text-center">
+                            <a asp-controller="Sneaker" asp-action="Index" asp-route-traId="@tra.TradeMarkId" class="btn btn-warning btn-sm">@tra.Sneakers.Count</a>
+                        </td>
+                        <td class="text-center">
+                            @tra.Sneakers.Sum(b => b.Quantity)
+                        </td>
+                        <td class="project-state text-center">
+                            @if (tra.IsDeleted)
+                            {
+                                <span class="badge badge-danger">Removed</span>
+                            }
+                            else
+                            {
+                                <span class="badge badge-success">Active</span>
+                            }
+                        </td>
+                        <td class="project-actions text-right">
+                            @if (!tra.IsDeleted)
+                            {
+                                <a class="btn btn-warning btn-sm" asp-controller="TradeMark" asp-action="Index" asp-route-traId="@tra.TradeMarkId">
+                                    <i class="fas fa-folder">
+                                    </i>
+                                    View
+                                </a>
+                                <a class="btn btn-info btn-sm" asp-controller="TradeMark" asp-action="Modify" asp-route-traId="@tra.TradeMarkId">
+                                    <i class="fas fa-pencil-alt">
+                                    </i>
+                                    Edit
+                                </a>
+                                <a class="btn btn-primary btn-sm" asp-controller="TradeMark" asp-action="Remove" asp-route-traId="@tra.TradeMarkId" onclick="return confirm('Are you sure delete?')">
+                                    <i class="lnr lnr-trash">
+                                    </i>
+                                    Remove
+                                </a>
+                            }
+                            else
+                            {
+                                <a class="btn btn-warning btn-sm" asp-controller="TradeMark" asp-action="Restore" asp-route-traId="@tra.TradeMarkId">
+                                    <i class="fas fa-trash-restore">
+                                    </i>
+                                    Restore
+                                </a>
+                            }
+                        </td>
+
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+        <div>
+            <ul class="pagination">
+                <li class="@(Model.Pagination.CurrentPage == 1 ? "page-item disabled" : "page-item")"><a class="page-link" asp-controller="TradeMark" asp-action="index" asp-route-pageNumber="1">First</a></li>
+                <li class="@(Model.Pagination.CurrentPage == 1 ? "page-item disabled" : "page-item")"><a class="page-link" asp-controller="TradeMark" asp-action="index" asp-route-pageNumber="@(Model.Pagination.CurrentPage-1)">Previous</a></li>
+                @for (pageNumber = Model.Pagination.StartPage; pageNumber <= Model.Pagination.EndPage; pageNumber++)
+                {
+                    <li class="@(pageNumber == Model.Pagination.CurrentPage ? "page-item active" : "page-item")"><a class="page-link" asp-controller="TradeMark" asp-action="index" asp-route-pageNumber="@pageNumber">@pageNumber</a></li>
+                }
+                <li class="@(Model.Pagination.CurrentPage == Model.Pagination.TotalPages ? "page-item disabled" : "page-item")"><a class="page-link" asp-action="index" asp-route-pageNumber="@(Model.Pagination.CurrentPage+1)">Next</a></li>
+                <li class="@(Model.Pagination.CurrentPage == Model.Pagination.TotalPages ? "page-item disabled" : "page-item")"><a class="page-link" asp-action="index" asp-route-pageNumber="@Model.Pagination.TotalPages">Last</a></li>
+            </ul>
+        </div>
+    </div>
+@section scripts{
+    <script>
+        function changePageSize() {
+            window.location.href = `/TradeMark/Index/1/${$('#pageSize').val()}`;
+        }
+        function search(el) {
+            if ($(el).val() == null || $(el).val() == '') {
+                window.location.href = `/TradeMark/Index/1/${$('#pageSize').val()}`;
+            }
+            else {
+                window.location.href = `/TradeMark/Index/1/${$('#pageSize').val()}/${$(el).val()}`;
+            }
+        }
+    </script>
+}

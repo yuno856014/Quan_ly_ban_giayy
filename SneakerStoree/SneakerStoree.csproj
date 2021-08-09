@@ -1,0 +1,76 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20210803073151_Add-IdentityUser.cs" />
+    <Compile Remove="Migrations\20210803073151_Add-IdentityUser.Designer.cs" />
+    <Compile Remove="Migrations\20210803073533_Add-IdentityUser.cs" />
+    <Compile Remove="Migrations\20210803073533_Add-IdentityUser.Designer.cs" />
+    <Compile Remove="Migrations\20210803100838_Add-LoginTB.cs" />
+    <Compile Remove="Migrations\20210803100838_Add-LoginTB.Designer.cs" />
+    <Compile Remove="Migrations\20210803102523_CreateDbSneakerStore.cs" />
+    <Compile Remove="Migrations\20210803102523_CreateDbSneakerStore.Designer.cs" />
+    <Compile Remove="Migrations\20210803102809_Add-Avartar.cs" />
+    <Compile Remove="Migrations\20210803102809_Add-Avartar.Designer.cs" />
+    <Compile Remove="Migrations\20210803145256_Add-TBSneaker.cs" />
+    <Compile Remove="Migrations\20210803145256_Add-TBSneaker.Designer.cs" />
+    <Compile Remove="Migrations\20210803150716_Add-Key.cs" />
+    <Compile Remove="Migrations\20210803150716_Add-Key.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="Views\Home\Index.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Views\Dashboard\Index.cshtml" />
+    <None Include="Views\Home\Index.cshtml" />
+    <None Include="Views\Sneaker\Index.cshtml" />
+    <None Include="Views\Shared\_DashboardLayout.cshtml" />
+    <None Include="Views\Shared\_HomeLayout.cshtml" />
+    <None Include="wwwroot\Error\js\amcharts.js" />
+    <None Include="wwwroot\Error\js\bootstrap.min.js" />
+    <None Include="wwwroot\Error\js\chart1.js" />
+    <None Include="wwwroot\Error\js\circle_bar.js" />
+    <None Include="wwwroot\Error\js\example.js" />
+    <None Include="wwwroot\Error\js\index.js" />
+    <None Include="wwwroot\Error\js\jquery-2.2.3.min.js" />
+    <None Include="wwwroot\Error\js\jquery.charts.js" />
+    <None Include="wwwroot\Error\js\kuma-gauge.jquery.js" />
+    <None Include="wwwroot\Error\js\modernizr.js" />
+    <None Include="wwwroot\Error\js\moment.min.js" />
+    <None Include="wwwroot\Error\js\percentage-circles.js" />
+    <None Include="wwwroot\Error\js\pignose.calender.js" />
+    <None Include="wwwroot\Error\js\prettymaps.js" />
+    <None Include="wwwroot\Error\js\raphael-min.js" />
+    <None Include="wwwroot\Error\js\rumcaJS.js" />
+    <None Include="wwwroot\Error\js\script.js" />
+    <None Include="wwwroot\Error\js\SimpleChart.js" />
+    <None Include="wwwroot\Error\js\simplyCountdown.js" />
+    <None Include="wwwroot\Error\js\skycons.js" />
+    <None Include="wwwroot\js\imagezoom.js" />
+    <None Include="wwwroot\js\jquery-1.11.0.min.js" />
+    <None Include="wwwroot\js\jquery.easydropdown.js" />
+    <None Include="wwwroot\js\jquery.flexslider.js" />
+    <None Include="wwwroot\js\memenu.js" />
+    <None Include="wwwroot\js\responsiveslides.min.js" />
+    <None Include="wwwroot\js\simpleCart.min.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.17" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.17" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.17" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.17" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.17">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
+  </ItemGroup>
+
+</Project>

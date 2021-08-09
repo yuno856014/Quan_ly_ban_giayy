@@ -1,0 +1,51 @@
+﻿@{
+    ViewBag.Title = "404 Page not found";
+}
+
+<div id="content">
+    <!-- top-bar -->
+    <!--// top-bar -->
+    <!-- main-heading -->
+    <h2 class="main-title-w3layouts mb-2 text-center">500 Error Page</h2>
+    <!--// main-heading -->
+    <!-- Error Page Content -->
+    <section class="error-page-content">
+        <!-- Error Page Info -->
+        <div class="outer-w3-agile mt-3">
+            <div class="container py-xl-5 py-4">
+                <div class="row">
+                    <div class="errorleft d-xl-flex align-items-center col-xl-4">
+                        <h4 class="error-title-agileits">500</h4>
+                    </div>
+                    <div class="error-right col-xl-8">
+                        <span class="error-subtext-w3l">
+                            <i class="fas fa-exclamation-triangle text-warning mr-3"></i>Internal server error
+                        </span>
+                        <p class="error-text">
+                            The server encountered something unexpected that didn't allow it to complete the request.
+                            We apologize.
+                        </p>
+                        <p class="error-text text-dark m-0">
+                            You can go to
+                            <a asp-controller="Home" asp-action="Index" role="button">home page</a> or search below
+                        </p>
+                    </div>
+                </div>
+                <form action="#" method="post" class="form-inline error-search-form w-xl-50 w-md-75 w-100 mx-auto mt-sm-5 mt-3">
+                    <input class="form-control" type="search" placeholder="Search" aria-label="Search" required="">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+        <!--// Error Page Info -->
+    </section>
+    <!--// Error Page Content -->
+    <!-- Copyright -->
+    <div class="copyright-w3layouts py-xl-3 py-2 mt-xl-5 mt-4 text-center">
+        <p>
+            © 2018 Modernize . All Rights Reserved | Design by
+            <a href="http://w3layouts.com/"> W3layouts </a>
+        </p>
+    </div>
+    <!--// Copyright -->
+</div>
