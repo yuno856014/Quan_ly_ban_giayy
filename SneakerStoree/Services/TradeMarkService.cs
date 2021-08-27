@@ -19,7 +19,7 @@ namespace SneakerStoree.Services
         public async Task<List<TradeMark>> GetTradeMarks()
         {
             return await context.TradeMarks.Include(b => b.Sneakers).ToListAsync();
-        }
+        }   
         public async Task<TradeMark> GetTradeMarkById(int tradeMarkId)
         {
             return await context.TradeMarks.Include(b => b.Sneakers).FirstOrDefaultAsync(t => t.TradeMarkId == tradeMarkId);

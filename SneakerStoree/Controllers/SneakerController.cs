@@ -29,7 +29,8 @@ namespace SneakerStoree.Controllers
             this.sneakerService = sneakerService;
             this.webHostEnvironment = webHostEnvironment;
         }
-        //[Microsoft.AspNetCore.Mvc.Route("/Sneaker/Index/{traId=1}/{pageNumber=1}/{pageSize=10}/{keyword=''}")]
+        //[Route("/Sneaker/Index/{traId=1}/{pageNumber=1}/{pageSize=10}/{keyword=''}")]
+
         public async Task<IActionResult> Index(int traId,int? pageNumber, int? pageSize,string keyword )
         {
             tradeMarkId = traId;

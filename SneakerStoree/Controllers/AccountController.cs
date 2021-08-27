@@ -31,7 +31,7 @@ namespace SneakerStoree.Controllers
                 {
                     if (result.Roles.Contains("SystemAdmin"))
                     {
-                        return RedirectToAction("Index", "Dashboard");
+                        return RedirectToAction("Index", "TradeMark");
                     }
                     else
                     {

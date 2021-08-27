@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using SneakerStoree.Models.Cart;
+using SneakerStoree.Models.Home;
+using SneakerStoree.Models.Sneaker;
 using SneakerStoree.Services;
 using System;
 using System.Collections.Generic;
@@ -109,6 +111,25 @@ namespace SneakerStoree.Controllers
         {
             var session = HttpContext.Session;
             session.Remove(CARTKEY);
+        }
+        [HttpGet("/Home/View/{sneakerId}")]
+        public async Task<IActionResult> View(int sneakerId)
+        {
+            var sneaker = await sneakerService.GetSneakerById(sneakerId);
+            var viewSneaker = new ViewSneakerHome()
+            {
+                SneakerId = sneaker.SneakerId,
+                SneakerName = sneaker.SneakerName,
+                ExistPhoto = sneaker.Photo,
+                Price = sneaker.Price,
+                Information = sneaker.Information,
+                PublishYear = sneaker.PublishYear,
+                Quantity = sneaker.Quantity,
+                Size = sneaker.Size,
+                TradeMarkId = sneaker.TradeMarkId,
+                TradeMark = sneaker.TradeMarks
+            };
+            return View(viewSneaker);
         }
     }
 }

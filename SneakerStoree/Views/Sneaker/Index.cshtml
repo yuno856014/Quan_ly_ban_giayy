@@ -123,7 +123,7 @@
                         }
                         else
                         {
-                            <a class="btn btn-warning btn-sm" asp-controller="Sneaker" asp-action="Restore" asp-route-sneakerId="@sneaker.SneakerId">
+                            <a class="btn btn-warning btn-sm" asp-controller="Sneaker" asp-action="Restore" asp-route-sneakerId="@sneaker.SneakerId" onclick="return confirm('Are you sure restore?')">
                                 <i class="fas fa-trash-restore">
                                 </i>
                                 Restore
@@ -140,9 +140,9 @@
         <li class="@(Model.Pagination.CurrentPage == 1 ? "page-item disabled" : "page-item")"><a class="page-link" asp-controller="Sneaker" asp-action="index" asp-route-pageNumber="1">First</a></li>
         <li class="@(Model.Pagination.CurrentPage == 1 ? "page-item disabled" : "page-item")"><a class="page-link" asp-controller="Sneaker" asp-action="index" asp-route-pageNumber="@(Model.Pagination.CurrentPage-1)">Previous</a></li>
         @for (pageIndex = Model.Pagination.StartPage; pageIndex <= Model.Pagination.EndPage; pageIndex++)
-        {
-            <li class="@(pageIndex == Model.Pagination.CurrentPage ? "page-item active" : "page-item")"><a class="page-link" asp-controller="Sneaker" asp-action="index" asp-route-pageNumber="@pageIndex">@pageIndex</a></li>
-        }
+            {
+        <li class="@(pageIndex == Model.Pagination.CurrentPage ? "page-item active" : "page-item")"><a class="page-link" asp-controller="Sneaker" asp-action="index" asp-route-pageNumber="@pageIndex">@pageIndex</a></li>
+            }
         <li class="@(Model.Pagination.CurrentPage == Model.Pagination.TotalPages ? "page-item disabled" : "page-item")"><a class="page-link" asp-controller="Sneaker" asp-action="index" asp-route-pageNumber="@(Model.Pagination.CurrentPage+1)">Next</a></li>
         <li class="@(Model.Pagination.CurrentPage == Model.Pagination.TotalPages ? "page-item disabled" : "page-item")"><a class="page-link" asp-controller="Sneaker" asp-action="index" asp-route-pageNumber="@Model.Pagination.TotalPages">Last</a></li>
     </ul>

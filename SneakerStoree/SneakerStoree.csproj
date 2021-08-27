@@ -57,7 +57,6 @@
     <None Include="wwwroot\js\jquery.flexslider.js" />
     <None Include="wwwroot\js\memenu.js" />
     <None Include="wwwroot\js\responsiveslides.min.js" />
-    <None Include="wwwroot\js\simpleCart.min.js" />
   </ItemGroup>
 
   <ItemGroup>

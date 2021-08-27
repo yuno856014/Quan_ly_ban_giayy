@@ -10,7 +10,7 @@
     }
 }
 <!--banner-starts-->
-<div class="bnr" id="home">
+@*<div class="bnr" id="home">
     <div id="top" class="callbacks_container">
         <ul class="rslides" id="slider4">
             <li>
@@ -25,7 +25,7 @@
         </ul>
     </div>
     <div class="clearfix"> </div>
-</div>
+</div>*@
 <!--banner-ends-->
 <section class="py-5">
     <div class="container px-4 px-lg-5 mt-5">
@@ -33,34 +33,39 @@
         {
             if (tra.Sneakers.Count != 0)
             {
-                <div class="panel panel-success " style="border-color:gray">
-                    <div class="panel-heading" style="background: url(//bizweb.dktcdn.net/100/289/867/themes/636489/assets/bg-collections.png?1626182968197);color:black;"><h2>@tra.TradeMarkName</h2></div>
-                    <div class="panel-body">
-                        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4">
-                            @foreach (Sneaker sneaker in tra.Sneakers)
-                            {
-                                if (sneaker.IsDeleted != true)
+                <div class="panel panel-success " style="border-color:white">
+                    <div class="panel-heading" style="background: url(//bizweb.dktcdn.net/100/289/867/themes/636489/assets/bg-collections.png?1626182968197); color: black; border-color: white;"><h2 style="text-align: center; font-family: cursive;">@tra.TradeMarkName</h2></div>
+                        <div class="panel-body">
+                            <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4">
+                                @foreach (Sneaker sneaker in tra.Sneakers)
                                 {
-                                    <div class="col-md-4">
-                                        <div class="product">
-                                            <div class="container">
-                                                <div class="product-top">
-                                                    <div class="product-one">
-                                                        <div class="col-md-3 product-left">
-                                                            <div class="product-main simpleCart_shelfItem">
-                                                                <a asp-controller="Home" asp-action="AddToCart" asp-route-sneakerId="@sneaker.SneakerId" class="mask"><img class="img-responsive zoom-img" style="width:253px;height:200px;object-fit:cover" src="@Url.Content(sneaker.Photo)" alt="" /></a>
-                                                                <div class="product-bottom">
-                                                                    <h3>@sneaker.SneakerName</h3>
-                                                                    <p>Explore Now</p>
-                                                                    <h4>
-                                                                        <a asp-controller="Home" asp-action="AddToCart" asp-route-sneakerId="@sneaker.SneakerId">
-                                                                            <i class="fas fa-cart-plus"></i>
-                                                                        </a>
-                                                                        <span class=" item_price">@FormatCurrency((double)sneaker.Price)đ</span>
-                                                                    </h4>
-                                                                </div>
-                                                                <div class="srch">
-                                                                    <span>@sneaker.Quantity</span>
+                                    if (sneaker.IsDeleted != true)
+                                    {
+                                        <div class="col-md-4">
+                                            <div class="product">
+                                                <div class="container">
+                                                    <div class="product-top">
+                                                        <div class="product-one">
+                                                            <div class="col-md-3 product-left">
+                                                                <div class="product-main simpleCart_shelfItem">
+                                                                    <a asp-controller="Home" asp-action="View" asp-route-sneakerId="@sneaker.SneakerId" class="mask"><img class="img-responsive zoom-img" style="width:253px;height:200px;object-fit:cover" src="@Url.Content(sneaker.Photo)" alt="" /></a>
+                                                                    <div class="product-bottom">
+                                                                        <h3>@sneaker.SneakerName</h3>
+                                                                        <h4>
+                                                                            <span class=" item_price" style="color:#ae2121;"><p>Price:</p>@FormatCurrency((double)sneaker.Price)đ</span>
+                                                                        </h4>
+                                                                    </div>
+                                                                    <a asp-controller="Home" asp-action="AddToCart" asp-route-sneakerId="@sneaker.SneakerId" class="btn btn-success" onclick="dialog.init()">
+                                                                        Buy Now
+                                                                        <i class="fas fa-shopping-cart"></i>
+                                                                    </a>
+                                                                    <a asp-controller="Home" asp-action="View" asp-route-sneakerId="@sneaker.SneakerId" class="btn btn-info">
+                                                                        View Details
+                                                                        <i class="fas fa-eye"></i>
+                                                                    </a>
+                                                                    <div class="srch">
+                                                                        <span>@sneaker.Quantity</span>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -68,14 +73,27 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                }
+                                    }
 
-                            }
+                                }
+                            </div>
                         </div>
-                    </div>
                 </div>
             }
         }
     </div>
 </section>
+@section scripts{ 
+    <script>
+        var dialog = bootbox.dialog({
+            title: 'A custom dialog with init',
+            message: '<p><i class="fa fa-spin fa-spinner"></i> Loading...</p>'
+        });
+
+        dialog.init(function () {
+            setTimeout(function () {
+                dialog.find('.bootbox-body').html('I was loaded after the dialog was shown!');
+            }, 3000);
+        });
+    </script>
+}

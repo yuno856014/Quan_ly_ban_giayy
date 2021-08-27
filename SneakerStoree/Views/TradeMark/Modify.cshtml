@@ -6,18 +6,23 @@
 
 <h1>Modify</h1>
 
-<h4>ModifyTradeMark</h4>
+<h4>Modify TradeMark</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Modify">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <form asp-controller="TradeMark" asp-action="Modify" method="post" enctype="multipart/form-data">
+            @*<div asp-validation-summary="ModelOnly" class="text-danger"></div>*@
             <div class="form-group">
                 <label asp-for="TradeMarkName" class="control-label"></label>
                 <input asp-for="TradeMarkName" class="form-control" />
                 <span asp-validation-for="TradeMarkName" class="text-danger"></span>
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <div class="form-group">
+                <button type="submit" class="btn btn-success">
+                    <i class="fa fa-pencil-alt"></i>
+                    Update
+                </button>
+            </div>
             <a class="btn btn-secondary" asp-controller="TradeMark" asp-action="index">
                 <i class="fas fa-backward">
                 </i>
@@ -27,6 +32,3 @@
     </div>
 </div>
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}

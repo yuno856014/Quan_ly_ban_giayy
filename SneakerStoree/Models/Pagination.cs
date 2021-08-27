@@ -27,13 +27,13 @@ namespace SneakerStoree.Models
             {
                 EndPage -= (StartPage - 1);
                 StartPage = 1;
-            }    
+            }
             if(EndPage > TotalItems)
             {
                 EndPage = TotalPages;
                 if(EndPage > 5)
                 {
-                    StartPage = EndPage - 4;    
+                    StartPage = EndPage - 4;
                 }    
             }    
         }

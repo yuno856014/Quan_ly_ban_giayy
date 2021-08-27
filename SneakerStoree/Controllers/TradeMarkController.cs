@@ -69,7 +69,7 @@ namespace SneakerStoree.Controllers
             var trademark = await tradeMarkService.GetTradeMarkById(traId);
             var modifyTradeMark = new ModifyTradeMark()
             {
-                TradeMarkId = trademark.TradeMarkId,
+               
                 TradeMarkName = trademark.TradeMarkName
             };
             return View(modifyTradeMark);
@@ -82,15 +82,15 @@ namespace SneakerStoree.Controllers
                 var tradeMark = await tradeMarkService.GetTradeMarkById(modifytradeMark.TradeMarkId);
                 if (tradeMark != null)
                 {
-                    tradeMark.TradeMarkId = modifytradeMark.TradeMarkId;
                     tradeMark.TradeMarkName = modifytradeMark.TradeMarkName;
+                    tradeMark.TradeMarkId = modifytradeMark.TradeMarkId;
 
                     await tradeMarkService.Modify(tradeMark);
                     return RedirectToAction("Index","TradeMark", new { tra = trademarkId});
                 }
             }
             ViewBag.TradeMarkId = trademarkId;
-            ViewBag.TradeMarkName = tradeMarkService;
+            ViewBag.TradeMarkName = trademarkName;
             return View(modifytradeMark);
         }
         [HttpGet]

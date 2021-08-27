@@ -1,13 +1,10 @@
-﻿@model CreateSneaker
+﻿    @model CreateSneaker
 
 @{
     ViewBag.Title = $"{ViewBag.CategoryName} | Create";
 }
-
-<h1>Create</h1>
-
-<h4>CreateSneaker</h4>
-<hr />
+<h3 style="font-family:fantasy">Create Sneaker</h3>
+<p>------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</p>
 <form asp-controller="Sneaker" asp-action="Create" method="post" enctype="multipart/form-data">
     <div class="row">
         <div class="col-md-8">

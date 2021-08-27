@@ -33,6 +33,8 @@
     <link rel="stylesheet" href="~/assets/libs/flot/flot.css">
     <!-- Css -->
     <link href="~/css/Site.css" rel="stylesheet" />
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.16.0/jquery.validate.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validation.unobtrusive/3.2.6/jquery.validate.unobtrusive.min.js"></script>
 </head>
 <body>
     <!-- [ Preloader ] Start -->
@@ -50,7 +52,7 @@
                     <span class="app-brand-logo demo">
                         <img src="~/images/logo.jpg" style="height:30px; width:45px" alt="Brand Logo" class="img-fluid">
                     </span>
-                    <a asp-controller="Dashboard" asp-action="Index" class="app-brand-text demo sidenav-text font-weight-normal ml-2">Sneaker Store</a>
+                    <a href="/" class="app-brand-text demo sidenav-text font-weight-normal ml-2">Sneaker Store</a>
                     <a href="javascript:" class="layout-sidenav-toggle sidenav-link text-large ml-auto">
                         <i class="ion ion-md-menu align-middle"></i>
                     </a>
@@ -70,14 +72,6 @@
 
                     <!-- Layouts -->
                     <li class="sidenav-divider mb-1"></li>
-                    <li class="sidenav-header small font-weight-semibold">Home</li>
-                    <li class="sidenav-item">
-                        <a asp-controller="Home" asp-action="Index" class="sidenav-link">
-                            <i class="sidenav-icon feather icon-grid"></i>
-                            <div>Sneaker Store</div>
-                        </a>
-                    </li>
-                    <li class="sidenav-divider mb-1"></li>
                     <li class="sidenav-header small font-weight-semibold">UI Components</li>
                     <li class="sidenav-item">
                         <a asp-controller="TradeMark" asp-action="Index" class="sidenav-link">
@@ -87,19 +81,7 @@
                     </li>
                     <!-- Pages -->
                     <li class="sidenav-divider mb-1"></li>
-                    <li class="sidenav-header small font-weight-semibold">Pages</li>
-                    <li class="sidenav-item">
-                        <a href="pages_authentication_login-v1.html" class="sidenav-link">
-                            <i class="sidenav-icon feather icon-lock"></i>
-                            <div>Login</div>
-                        </a>
-                    </li>
-                    <li class="sidenav-item">
-                        <a href="pages_authentication_register-v1.html" class="sidenav-link">
-                            <i class="sidenav-icon feather icon-user"></i>
-                            <div>Signup</div>
-                        </a>
-                    </li>
+                    <li class="sidenav-header small font-weight-semibold">Account</li>
                     <li class="sidenav-item">
                         <a asp-controller="Account" asp-action="Signout" class="sidenav-link">
                             <i class="sidenav-icon feather feather icon-log-out"></i>
@@ -138,8 +120,8 @@
                         <hr class="d-lg-none w-100 my-2">
 
                         <!--<div class="navbar-nav align-items-lg-center">-->
-                            <!-- Search -->
-                            <!--<label class="nav-item navbar-text navbar-search-box p-0 active">
+                        <!-- Search -->
+                        <!--<label class="nav-item navbar-text navbar-search-box p-0 active">
                                 <i class="feather icon-search navbar-icon align-middle"></i>
                                 <span class="navbar-search-input pl-2">
                                     <input type="text" class="form-control navbar-text mx-2" placeholder="Search...">
@@ -276,16 +258,16 @@
                                     </span>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right">
-                                    <a href="javascript:" class="dropdown-item">
-                                        <i class="feather icon-user text-muted"></i> &nbsp; My profile
-                                    </a>
-                                    <a href="javascript:" class="dropdown-item">
-                                        <i class="feather icon-mail text-muted"></i> &nbsp; Messages
-                                    </a>
-                                    <a href="javascript:" class="dropdown-item">
-                                        <i class="feather icon-settings text-muted"></i> &nbsp; Account settings
-                                    </a>
-                                    <div class="dropdown-divider"></div>
+                                    @*<a href="javascript:" class="dropdown-item">
+                                            <i class="feather icon-user text-muted"></i> &nbsp; My profile
+                                        </a>
+                                        <a href="javascript:" class="dropdown-item">
+                                            <i class="feather icon-mail text-muted"></i> &nbsp; Messages
+                                        </a>
+                                        <a href="javascript:" class="dropdown-item">
+                                            <i class="feather icon-settings text-muted"></i> &nbsp; Account settings
+                                        </a>
+                                        <div class="dropdown-divider"></div>*@
                                     <a asp-controller="Account" asp-action="Signout" class="dropdown-item">
                                         <i class="feather icon-power text-danger"></i> &nbsp; Log Out
                                     </a>
@@ -314,19 +296,21 @@
     <script src="~/assets/js/jquery-3.3.1.min.js"></script>
     <script src="~/assets/libs/popper/popper.js"></script>
     <script src="~/assets/js/bootstrap.js"></script>
-    <script src="~/assets/js/sidenav.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.min.js" integrity="sha512-RdSPYh1WA6BF0RhpisYJVYkOyTzK4HwofJ3Q7ivt/jkpW6Vc8AurL1R+4AUcvn9IwEKAPm/fk7qFZW3OuiUDeg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    @*<script src="~/assets/js/sidenav.js"></script>
     <script src="~/assets/js/layout-helpers.js"></script>
-    <script src="~/assets/js/material-ripple.js"></script>
+    <script src="~/assets/js/material-ripple.js"></script>*@
     <script src="~/plugins/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
 
     <!-- Libs -->
-    <script src="~/assets/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+    @*<script src="~/assets/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
     <script src="~/assets/libs/eve/eve.js"></script>
     <script src="~/assets/libs/flot/flot.js"></script>
     <script src="~/assets/libs/flot/curvedLines.js"></script>
     <script src="~/assets/libs/chart-am4/core.js"></script>
     <script src="~/assets/libs/chart-am4/charts.js"></script>
-    <script src="~/assets/libs/chart-am4/animated.js"></script>
+    <script src="~/assets/libs/chart-am4/animated.js"></script>*@
 
     <!-- Demo -->
     <script src="~/assets/js/demo.js"></script>
